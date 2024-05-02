@@ -1,0 +1,23 @@
+﻿<Page x:Class="Fitnes.View.AutoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Fitnes.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AutoPage">
+
+    <Grid Width="600" Height="600">
+        <!--<Grid.Background>
+        <ImageBrush ImageSource="..\ViewModel\изображение-PhotoRoom.png-PhotoRoom(3).png"></ImageBrush>
+        </Grid.Background>
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>-->
+        
+    </Grid>
+</Page>

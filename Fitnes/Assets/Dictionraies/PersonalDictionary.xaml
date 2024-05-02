@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="TextBlock">
+        <Setter Property="Padding" Value="0 10 0 0"/>
+    </Style>
+    <Style  TargetType="TextBox">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="Background" Value="#10B9BC"/>
+        <Setter Property="BorderBrush" Value="#10B9BC"/>
+        <Setter Property="BorderThickness" Value="3"/>
+    </Style>
+    <DataTemplate x:Key="HeaderTemplate">
+        <TextBlock Text="{Binding}" TextWrapping="Wrap"  TextAlignment="Center"/>
+        <!--Обозначаем наличие привязки в ячеке(шапке?) таблицы, выравниванием текст в ячейках по центру и задаем перенос текста-->
+    </DataTemplate>
+    <Style TargetType="DataGridColumnHeader">
+        <!--Ограничиваем применение стиля (только для шапки DataGridColumnHeader)-->
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <!--Задаем выравнивание по центру ячейки-->
+        <Setter Property="Padding" Value="2"/>
+        <!--Задаем отступ в ячейке-->
+        <Setter Property="ContentTemplate" Value="{StaticResource HeaderTemplate}"/>
+        <!--Применяем в стиле шаблон отображения текстовых данных HeaderTemplate-->
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0 0 2 2"/>
+    </Style>
+</ResourceDictionary>

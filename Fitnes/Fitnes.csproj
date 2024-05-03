@@ -134,6 +134,9 @@
     <Compile Include="View\ViewPage\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewPage\TrainersPage.xaml.cs">
+      <DependentUpon>TrainersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewPage\TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewPage\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPage\TrainersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

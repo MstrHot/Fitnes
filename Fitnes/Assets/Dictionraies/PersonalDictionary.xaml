@@ -30,4 +30,10 @@
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="0 0 2 2"/>
     </Style>
+
+    <Style TargetType="GridViewColumnHeader">
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+    
+    
 </ResourceDictionary>

@@ -23,6 +23,7 @@ namespace Fitnes.View.ViewPage
     {
         Core db = new Core();
         List<Pol> arrayPol;
+        List<Targe>
         public ProfilePage()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Fitnes.View.ViewPage
             PolComboBox.DisplayMemberPath = "NamePol";
             PolComboBox.SelectedValuePath = "IdPol";
             PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
+            TargetComboBox.ItemsSource=
         }
 
         private void Pol_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +78,11 @@ namespace Fitnes.View.ViewPage
             {
                 MessageBox.Show("Критический сбор в работе приложения:", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void TargetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

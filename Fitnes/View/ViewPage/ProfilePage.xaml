@@ -50,7 +50,7 @@
             <TextBlock Text="Вес" FontSize="20" Opacity="0.5"/>
             <TextBox x:Name="WeightTextBox" Text="Вес пользователя" />
             <TextBlock Text="Цель" FontSize="20" Opacity="0.5"/>
-            <ComboBox x:Name="TargetComboBox" Height="32" />
+            <ComboBox x:Name="TargetComboBox" SelectionChanged="TargetComboBox_SelectionChanged" Height="32" />
             <TextBlock Text="Коментарий к цели" FontSize="20" Opacity="0.5"/>
             <TextBox x:Name="CommentTextBox" Text="коментари пользователя" />
         </StackPanel>

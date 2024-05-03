@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="SportModel.Exercises" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SportModel.Pol" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SportModel.Request" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SportModel.Stuts" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportModel.Stuts" Width="1.5" PointX="4.375" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SportModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SportModel.Trainer" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SportModel.Training" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />

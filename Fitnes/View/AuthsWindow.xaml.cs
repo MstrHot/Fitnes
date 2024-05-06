@@ -51,6 +51,7 @@ namespace Fitnes.View
                         x.Password == password.Password)
                         .FirstOrDefault();
                     App.CurrentUser = item;
+                    App.CurrentClient = db.context.Client.FirstOrDefault(x=>x.UserId== item.IdUsers);
 
                     this.Hide(); // Скрываем нынешнее окно
 

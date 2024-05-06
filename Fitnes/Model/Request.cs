@@ -15,7 +15,6 @@ namespace Fitnes.Model
     public partial class Request
     {
         public int IdRequest { get; set; }
-        public string Target { get; set; }
         public int StatusId { get; set; }
         public int ClientId { get; set; }
         public int TrenerId { get; set; }

@@ -12,16 +12,16 @@ namespace Fitnes.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Discounts
+    public partial class Target
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Discounts()
+        public Target()
         {
             this.Client = new HashSet<Client>();
         }
     
-        public int IdDiscounts { get; set; }
-        public string Price { get; set; }
+        public int IdTarget { get; set; }
+        public string TargetName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }

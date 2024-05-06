@@ -28,12 +28,12 @@ namespace Fitnes.Model
         }
     
         public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Discounts> Discounts { get; set; }
         public virtual DbSet<Exercises> Exercises { get; set; }
         public virtual DbSet<Pol> Pol { get; set; }
         public virtual DbSet<Request> Request { get; set; }
         public virtual DbSet<Stuts> Stuts { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Target> Target { get; set; }
         public virtual DbSet<Trainer> Trainer { get; set; }
         public virtual DbSet<Training> Training { get; set; }
         public virtual DbSet<Type> Type { get; set; }

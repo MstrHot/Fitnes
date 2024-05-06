@@ -1,4 +1,5 @@
 ﻿using Fitnes.Model;
+using Microsoft.Build.BuildEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Fitnes.View.ViewPage
 {
     /// <summary>
@@ -23,21 +25,33 @@ namespace Fitnes.View.ViewPage
     {
         Core db = new Core();
         List<Pol> arrayPol;
-        List<Targe>
+        List<Model.Target> arrayTarget;
         public ProfilePage()
         {
             InitializeComponent();
-            UserName.Text = App.CurrentUser.Name;
-            Surname.Text = App.CurrentUser.Surname;
-            Patronymic.Text = App.CurrentUser.Patronymic; 
-            Telephone.Text = App.CurrentUser.Nunber;
-            Mail.Text = App.CurrentUser.Email;
-            arrayPol = db.context.Pol.ToList();
-            PolComboBox.ItemsSource = arrayPol;
-            PolComboBox.DisplayMemberPath = "NamePol";
-            PolComboBox.SelectedValuePath = "IdPol";
-            PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
-            TargetComboBox.ItemsSource=
+            if (App.CurrentUser!=null && App.CurrentClient!=null)
+            {
+                UserName.Text = App.CurrentUser.Name;
+                Surname.Text = App.CurrentUser.Surname;
+                Patronymic.Text = App.CurrentUser.Patronymic;
+                Telephone.Text = App.CurrentUser.Nunber;
+                Mail.Text = App.CurrentUser.Email;
+                arrayPol = db.context.Pol.ToList();
+                PolComboBox.ItemsSource = arrayPol;
+                PolComboBox.DisplayMemberPath = "NamePol";
+                PolComboBox.SelectedValuePath = "IdPol";
+                PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
+                arrayTarget = db.context.Target.ToList();
+                TargetComboBox.ItemsSource = arrayTarget;
+                TargetComboBox.DisplayMemberPath = "TargetName";
+                TargetComboBox.SelectedValuePath = "IdTarget";
+                TargetComboBox.Text = App.CurrentClient.Target1.TargetName;
+
+            }
+           
+              
+            
+           
         }
 
         private void Pol_SelectionChanged(object sender, SelectionChangedEventArgs e)

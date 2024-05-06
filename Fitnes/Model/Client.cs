@@ -16,11 +16,11 @@ namespace Fitnes.Model
     {
         public int IdClient { get; set; }
         public Nullable<int> Treiner { get; set; }
-        public int Discounts { get; set; }
+        public Nullable<int> Target { get; set; }
         public int UserId { get; set; }
         public Nullable<int> TrainingId { get; set; }
     
-        public virtual Discounts Discounts1 { get; set; }
+        public virtual Target Target1 { get; set; }
         public virtual Trainer Trainer { get; set; }
         public virtual Training Training { get; set; }
         public virtual Users Users { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Fitnes.Model;
+using Microsoft.Build.BuildEngine;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,6 +17,7 @@ namespace Fitnes
     {
         public static Users CurrentUser { get; set; } = null;
         public static Pol CurrentPol { get; set; } = null;
+        public static Client CurrentClient { get; set; } = null;
 
     }
 }

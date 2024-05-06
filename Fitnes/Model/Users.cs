@@ -28,7 +28,7 @@ namespace Fitnes.Model
         public int UserType { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int Pol { get; set; }
+        public Nullable<int> Pol { get; set; }
         public Nullable<System.DateTime> DateBrith { get; set; }
         public byte[] Photo { get; set; }
         public string Nunber { get; set; }

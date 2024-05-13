@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище SportModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Achiev">
+          <Key>
+            <PropertyRef Name="IdAchiev" />
+          </Key>
+          <Property Name="IdAchiev" Type="int" Nullable="false" />
+          <Property Name="NameAchiev" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TrainerId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="IdClient" />
@@ -72,7 +80,6 @@
           </Key>
           <Property Name="IdTrainer" Type="int" Nullable="false" />
           <Property Name="Exper" Type="nvarchar" MaxLength="50" />
-          <Property Name="Achiev" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="Training">
@@ -106,6 +113,20 @@
           <Property Name="Photo" Type="image" />
           <Property Name="Nunber" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Achiev_Trainer">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Achiev" Type="Self.Achiev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="IdTrainer" />
+            </Principal>
+            <Dependent Role="Achiev">
+              <PropertyRef Name="TrainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_Discounts">
           <End Role="Target" Type="Self.Target" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -274,6 +295,7 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище SportModelContainer">
+          <EntitySet Name="Achiev" EntityType="Self.Achiev" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pol" EntityType="Self.Pol" Schema="dbo" store:Type="Tables" />
@@ -285,6 +307,10 @@
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Achiev_Trainer" Association="Self.FK_Achiev_Trainer">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Achiev" EntitySet="Achiev" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Discounts" Association="Self.FK_Client_Discounts">
             <End Role="Target" EntitySet="Target" />
             <End Role="Client" EntitySet="Client" />
@@ -361,6 +387,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Achiev" EntityType="SportModel.Achiev" />
           <EntitySet Name="Client" EntityType="SportModel.Client" />
           <EntitySet Name="Exercises" EntityType="SportModel.Exercises" />
           <EntitySet Name="Pol" EntityType="SportModel.Pol" />
@@ -372,6 +399,10 @@
           <EntitySet Name="Training" EntityType="SportModel.Training" />
           <EntitySet Name="Type" EntityType="SportModel.Type" />
           <EntitySet Name="Users" EntityType="SportModel.Users" />
+          <AssociationSet Name="FK_Achiev_Trainer" Association="SportModel.FK_Achiev_Trainer">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Achiev" EntitySet="Achiev" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Discounts" Association="SportModel.FK_Client_Discounts">
             <End Role="Target" EntitySet="Target" />
             <End Role="Client" EntitySet="Client" />
@@ -424,6 +455,15 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Achiev">
+          <Key>
+            <PropertyRef Name="IdAchiev" />
+          </Key>
+          <Property Name="IdAchiev" Type="Int32" Nullable="false" />
+          <Property Name="NameAchiev" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TrainerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trainer" Relationship="SportModel.FK_Achiev_Trainer" FromRole="Achiev" ToRole="Trainer" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="IdClient" />
@@ -501,8 +541,8 @@
           </Key>
           <Property Name="IdTrainer" Type="Int32" Nullable="false" />
           <Property Name="Exper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Achiev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Achiev" Relationship="SportModel.FK_Achiev_Trainer" FromRole="Trainer" ToRole="Achiev" />
           <NavigationProperty Name="Client" Relationship="SportModel.FK_Client_Trainer1" FromRole="Trainer" ToRole="Client" />
           <NavigationProperty Name="Request" Relationship="SportModel.FK_Request_Trainer" FromRole="Trainer" ToRole="Request" />
           <NavigationProperty Name="Users" Relationship="SportModel.FK_Trainer_Users1" FromRole="Trainer" ToRole="Users" />
@@ -545,6 +585,20 @@
           <NavigationProperty Name="Trainer" Relationship="SportModel.FK_Trainer_Users1" FromRole="Users" ToRole="Trainer" />
           <NavigationProperty Name="Type" Relationship="SportModel.FK_Users_Type" FromRole="Users" ToRole="Type" />
         </EntityType>
+        <Association Name="FK_Achiev_Trainer">
+          <End Type="SportModel.Trainer" Role="Trainer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SportModel.Achiev" Role="Achiev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="IdTrainer" />
+            </Principal>
+            <Dependent Role="Achiev">
+              <PropertyRef Name="TrainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_Discounts">
           <End Type="SportModel.Target" Role="Target" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -711,6 +765,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище SportModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище SportModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Achiev">
+            <EntityTypeMapping TypeName="SportModel.Achiev">
+              <MappingFragment StoreEntitySet="Achiev">
+                <ScalarProperty Name="TrainerId" ColumnName="TrainerId" />
+                <ScalarProperty Name="NameAchiev" ColumnName="NameAchiev" />
+                <ScalarProperty Name="IdAchiev" ColumnName="IdAchiev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="SportModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -783,7 +846,6 @@
             <EntityTypeMapping TypeName="SportModel.Trainer">
               <MappingFragment StoreEntitySet="Trainer">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Achiev" ColumnName="Achiev" />
                 <ScalarProperty Name="Exper" ColumnName="Exper" />
                 <ScalarProperty Name="IdTrainer" ColumnName="IdTrainer" />
               </MappingFragment>

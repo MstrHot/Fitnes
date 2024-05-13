@@ -27,6 +27,7 @@ namespace Fitnes.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Achiev> Achiev { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Exercises> Exercises { get; set; }
         public virtual DbSet<Pol> Pol { get; set; }

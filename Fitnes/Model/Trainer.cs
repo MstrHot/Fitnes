@@ -17,15 +17,17 @@ namespace Fitnes.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trainer()
         {
+            this.Achiev = new HashSet<Achiev>();
             this.Client = new HashSet<Client>();
             this.Request = new HashSet<Request>();
         }
     
         public int IdTrainer { get; set; }
         public string Exper { get; set; }
-        public string Achiev { get; set; }
         public Nullable<int> UserId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Achiev> Achiev { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

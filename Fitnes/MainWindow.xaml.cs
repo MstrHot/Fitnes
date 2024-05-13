@@ -22,13 +22,14 @@ namespace Fitnes
     /// </summary>
     public partial class MainWindow : Window
     {
+        string FIO;
         public MainWindow()
         {
             InitializeComponent();
 
             //вывод имени пользователя
-
-            UsersName.Content = App.CurrentUser.Name;
+            FIO = App.CurrentUser.FIO.ToString();
+            UsersName.Content = FIO;
             MainFrame.Navigate(new ProfilePage());
 
         }

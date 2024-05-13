@@ -29,22 +29,24 @@ namespace Fitnes.View.ViewPage
         public ProfilePage()
         {
             InitializeComponent();
-            if (App.CurrentUser!=null && App.CurrentClient!=null)
+            UserName.Text = App.CurrentUser.Name;
+            Surname.Text = App.CurrentUser.Surname;
+            Patronymic.Text = App.CurrentUser.Patronymic;
+            Telephone.Text = App.CurrentUser.Nunber;
+            Mail.Text = App.CurrentUser.Email;
+            arrayPol = db.context.Pol.ToList();
+            PolComboBox.ItemsSource = arrayPol;
+            PolComboBox.DisplayMemberPath = "NamePol";
+            PolComboBox.SelectedValuePath = "IdPol";
+            PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
+            arrayTarget = db.context.Target.ToList();
+            TargetComboBox.ItemsSource = arrayTarget;
+            TargetComboBox.DisplayMemberPath = "TargetName";
+            TargetComboBox.SelectedValuePath = "IdTarget";
+           
+            if ( App.CurrentClient!=null)
             {
-                UserName.Text = App.CurrentUser.Name;
-                Surname.Text = App.CurrentUser.Surname;
-                Patronymic.Text = App.CurrentUser.Patronymic;
-                Telephone.Text = App.CurrentUser.Nunber;
-                Mail.Text = App.CurrentUser.Email;
-                arrayPol = db.context.Pol.ToList();
-                PolComboBox.ItemsSource = arrayPol;
-                PolComboBox.DisplayMemberPath = "NamePol";
-                PolComboBox.SelectedValuePath = "IdPol";
-                PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
-                arrayTarget = db.context.Target.ToList();
-                TargetComboBox.ItemsSource = arrayTarget;
-                TargetComboBox.DisplayMemberPath = "TargetName";
-                TargetComboBox.SelectedValuePath = "IdTarget";
+              
                 TargetComboBox.Text = App.CurrentClient.Target1.TargetName;
 
             }

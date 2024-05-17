@@ -14,8 +14,6 @@ namespace Fitnes.Model
     
     public partial class Users
     {
-        Core db = new Core();
-        public string FIO => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {

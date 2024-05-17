@@ -89,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialClasses\UsersPartial.cs" />
     <Compile Include="Model\Pol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

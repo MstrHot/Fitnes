@@ -37,7 +37,7 @@
         
         <!--вывод информации достежениях тренера при выборе тренера-->
 
-        <ListView  Visibility="Hidden" x:Name="AchievementsListView"  Grid.Row="1" Grid.Column="1" Width="600" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100">
+        <ListView  Visibility="Hidden" x:Name="AchievementsListView"  Grid.Row="1" Grid.Column="1" Width="600" Height="300" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  HorizontalAlignment="Left" Margin="100">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="AchievementsGridViewColumn" Width="600" DisplayMemberBinding="{Binding Path=NameAchiev}"
@@ -50,14 +50,14 @@
         <!--вывод заявок-->
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="100 0 0 0">
             <TextBlock Text="Ваши заявки:" FontSize="24" />
-            <ListView  x:Name="OrderListView" Width="600" HorizontalAlignment="Left" Margin="0 20 0 0">
+            <ListView  x:Name="OrderListView" Width="600" HorizontalAlignment="Left" Margin="0 20 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <ListView.View >
-                    <GridView >
+                    <GridView  >
                         <GridViewColumn Width="200"  DisplayMemberBinding="{Binding Path=IdRequest}"
                                         Header="Номер заявки"/>
-                        <GridViewColumn Width="300" DisplayMemberBinding="{Binding Path=FIO}"
+                        <GridViewColumn Width="300" DisplayMemberBinding="{Binding Path=FIOViewRequstStuts}"
                                         Header="Имя"/>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=StatusId}"
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=Type}"
                                         Header="Статус"/>
 
                     </GridView>

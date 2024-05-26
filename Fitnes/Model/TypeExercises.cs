@@ -12,24 +12,18 @@ namespace Fitnes.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Training
+    public partial class TypeExercises
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Training()
+        public TypeExercises()
         {
-            this.Client = new HashSet<Client>();
+            this.Exercises = new HashSet<Exercises>();
         }
     
-        public int IdTraining { get; set; }
-        public int Progress { get; set; }
-        public int ClientId { get; set; }
-        public int ExercisesId { get; set; }
-        public int TrenerId { get; set; }
-        public Nullable<int> DoneExercises { get; set; }
+        public int IdTypeExercises { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
-        public virtual Exercises Exercises { get; set; }
-        public virtual Trainer Trainer { get; set; }
+        public virtual ICollection<Exercises> Exercises { get; set; }
     }
 }

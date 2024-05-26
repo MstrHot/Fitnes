@@ -14,13 +14,22 @@ namespace Fitnes.Model
     
     public partial class Exercises
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Exercises()
+        {
+            this.Training = new HashSet<Training>();
+        }
+    
         public int IdExercises { get; set; }
         public string NameExercises { get; set; }
-        public string Duration { get; set; }
-        public string Replays { get; set; }
-        public int TraningId { get; set; }
+        public int Duration { get; set; }
+        public int Replays { get; set; }
+        public int Quantity { get; set; }
         public string RegularityExercises { get; set; }
+        public int TypeExercisesId { get; set; }
     
-        public virtual Training Training { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Training> Training { get; set; }
+        public virtual TypeExercises TypeExercises { get; set; }
     }
 }

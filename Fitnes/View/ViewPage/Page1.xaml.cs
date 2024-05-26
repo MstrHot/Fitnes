@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Fitnes.View
+namespace Fitnes.View.ViewPage
 {
     /// <summary>
-    /// Логика взаимодействия для AutoPage.xaml
+    /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class AutoPage : Page
+    public partial class Page1 : Page
     {
-        public AutoPage()
+        public Page1()
         {
             InitializeComponent();
         }

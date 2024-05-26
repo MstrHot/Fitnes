@@ -11,4 +11,13 @@ namespace Fitnes.Model
     {
         public string FIO => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
     }
+    public partial class View_RequstStuts 
+    {
+        public string FIOViewRequstStuts=> Name + " " + Surname[0] + "." + Patronymic[0] + ".";
+    }
+    public partial class ViewTraining
+    {
+        public string FIOViewViewTraining => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
+    }
+
 }

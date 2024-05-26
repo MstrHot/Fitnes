@@ -27,22 +27,42 @@
             <ColumnDefinition Width="372"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel x:Name="TrainingAllStackPanel" Grid.Row="1" Grid.Column="1">
         <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
-        <DataGrid   Margin="0 100 0 0"
-                  x:Name="TrainingGrid" AutoGenerateColumns="False"  ColumnWidth="*" FontSize="25"  >
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="Вид тренировки"  />
-                <DataGridTextColumn  Header="Названия тренировки"  />
-                <DataGridTextColumn Header="В какие дни"  />
-                <DataGridTextColumn Header="Тренер"  />
-                <DataGridTextColumn Header="Прогресс" />
-            </DataGrid.Columns>
-        </DataGrid>
-            <DockPanel>
+            <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="TrainingGridSelectionChanged"
+                  x:Name="TrainingGrid"  FontSize="25"  >
+                <ListView.View >
+                    <GridView x:Name="ter">
+                        <GridViewColumn  Width="200" Header="Вид тренировки" DisplayMemberBinding="{Binding Path=TypeExercisesName}" />
+                        <GridViewColumn Width="250"  Header="Названия тренировки" DisplayMemberBinding="{Binding Path=NameExercises}" />
+                        <GridViewColumn Width="310" Header="Количество раз в неделю"  DisplayMemberBinding="{Binding Path=RegularityExercises}" />
+                        <GridViewColumn Width="170" Header="Тренер" DisplayMemberBinding="{Binding Path=FIOViewViewTraining}" />
+                        <GridViewColumn Width="130" Header="Прогресс" DisplayMemberBinding="{Binding Path=Progress}" />
+                    </GridView>
+                </ListView.View>
+        </ListView>
+            <DockPanel Margin="0 40 0 0">
             <Button x:Name="DelTraning" Click="DelTraning_Click" Width="145" Height="50" Content="Удалить" />
                 <Button x:Name="AddTraning" Click="AddTraning_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Добавить"/>
             </DockPanel>
+        </StackPanel>
+        <StackPanel x:Name="TrainingDetailsStackPanel" Visibility="Hidden"   Grid.Row="1" Grid.Column="1">
+            <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
+
+            <DataGrid   Margin="0 100 0 0"
+                  x:Name="TrainingDetailsGrid" AutoGenerateColumns="False"  ColumnWidth="*" FontSize="25"  >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Вид тренировки" Binding="{Binding Path=Name}" />
+                    <DataGridTextColumn  Header="Названия тренировки" Binding="{Binding Path=NameExercises}" />
+                    <DataGridTextColumn Header="Время выполнение"  Binding="{Binding Path=Duration}" />
+                    <DataGridTextColumn Header="Количество раз в неделю"  Binding="{Binding Path=RegularityExercises}" />
+                    <DataGridTextColumn Header="Подходы" Binding="{Binding Path=Replays}" />
+                    <DataGridTextColumn Header="Сделано Подходов" Binding="{Binding Path=DoneExercises}" />
+                    <DataGridTextColumn Header="За подход" Binding="{Binding Path=Quantity}" />
+                    <DataGridTextColumn Header="Прогресс" Binding="{Binding Path=Progress}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
         </StackPanel>
 
     </Grid>

@@ -28,11 +28,12 @@
             <PropertyRef Name="IdExercises" />
           </Key>
           <Property Name="IdExercises" Type="int" Nullable="false" />
-          <Property Name="NameExercises" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Duration" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Replays" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="TraningId" Type="int" Nullable="false" />
-          <Property Name="RegularityExercises" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NameExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeExercisesId" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Replays" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="RegularityExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Pol">
           <Key>
@@ -72,7 +73,7 @@
             <PropertyRef Name="IdTarget" />
           </Key>
           <Property Name="IdTarget" Type="int" Nullable="false" />
-          <Property Name="TargetName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="TargetName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Trainer">
           <Key>
@@ -87,15 +88,25 @@
             <PropertyRef Name="IdTraining" />
           </Key>
           <Property Name="IdTraining" Type="int" Nullable="false" />
+          <Property Name="DoneExercises" Type="int" />
           <Property Name="Progress" Type="int" Nullable="false" />
           <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ExercisesId" Type="int" Nullable="false" />
+          <Property Name="TrenerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="IdType" />
           </Key>
           <Property Name="IdType" Type="int" Nullable="false" />
-          <Property Name="NameType" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeExercises">
+          <Key>
+            <PropertyRef Name="IdTypeExercises" />
+          </Key>
+          <Property Name="IdTypeExercises" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -112,6 +123,71 @@
           <Property Name="DateBrith" Type="date" />
           <Property Name="Photo" Type="image" />
           <Property Name="Nunber" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Sport.dbo.View_RequstStuts" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_RequstStuts">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Sport.dbo.View_TrainingDetails" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_TrainingDetails">
+          <Key>
+            <PropertyRef Name="IdTraining" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="NameExercises" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="RegularityExercises" />
+            <PropertyRef Name="Replays" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Progress" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="IdTraining" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="RegularityExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Replays" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Progress" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Sport.dbo.ViewTraining" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ViewTraining">
+          <Key>
+            <PropertyRef Name="TypeExercisesName" />
+            <PropertyRef Name="NameExercises" />
+            <PropertyRef Name="RegularityExercises" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Progress" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="IdTraining" />
+          </Key>
+          <Property Name="TypeExercisesName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegularityExercises" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Progress" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="IdTraining" Type="int" Nullable="false" />
+          <Property Name="DoneExercises" Type="int" />
         </EntityType>
         <Association Name="FK_Achiev_Trainer">
           <End Role="Trainer" Type="Self.Trainer" Multiplicity="1">
@@ -179,17 +255,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exercises_Training">
-          <End Role="Training" Type="Self.Training" Multiplicity="1">
+        <Association Name="FK_Exercises_TypeExercises">
+          <End Role="TypeExercises" Type="Self.TypeExercises" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Training">
-              <PropertyRef Name="IdTraining" />
+            <Principal Role="TypeExercises">
+              <PropertyRef Name="IdTypeExercises" />
             </Principal>
             <Dependent Role="Exercises">
-              <PropertyRef Name="TraningId" />
+              <PropertyRef Name="TypeExercisesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,6 +308,34 @@
             </Principal>
             <Dependent Role="Trainer">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Exercises">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="IdExercises" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="ExercisesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Trainer1">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="IdTrainer" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="TrenerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -306,7 +410,45 @@
           <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeExercises" EntityType="Self.TypeExercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_RequstStuts" EntityType="Self.View_RequstStuts" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_RequstStuts].[IdRequest] AS [IdRequest], 
+    [View_RequstStuts].[Type] AS [Type], 
+    [View_RequstStuts].[Name] AS [Name], 
+    [View_RequstStuts].[Patronymic] AS [Patronymic], 
+    [View_RequstStuts].[Surname] AS [Surname], 
+    [View_RequstStuts].[ClientId] AS [ClientId]
+    FROM [dbo].[View_RequstStuts] AS [View_RequstStuts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_TrainingDetails" EntityType="Self.View_TrainingDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_TrainingDetails].[IdTraining] AS [IdTraining], 
+    [View_TrainingDetails].[Name] AS [Name], 
+    [View_TrainingDetails].[NameExercises] AS [NameExercises], 
+    [View_TrainingDetails].[Duration] AS [Duration], 
+    [View_TrainingDetails].[RegularityExercises] AS [RegularityExercises], 
+    [View_TrainingDetails].[Replays] AS [Replays], 
+    [View_TrainingDetails].[Quantity] AS [Quantity], 
+    [View_TrainingDetails].[Progress] AS [Progress], 
+    [View_TrainingDetails].[ClientId] AS [ClientId]
+    FROM [dbo].[View_TrainingDetails] AS [View_TrainingDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewTraining" EntityType="Self.ViewTraining" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewTraining].[TypeExercisesName] AS [TypeExercisesName], 
+    [ViewTraining].[NameExercises] AS [NameExercises], 
+    [ViewTraining].[RegularityExercises] AS [RegularityExercises], 
+    [ViewTraining].[Name] AS [Name], 
+    [ViewTraining].[Surname] AS [Surname], 
+    [ViewTraining].[Patronymic] AS [Patronymic], 
+    [ViewTraining].[Progress] AS [Progress], 
+    [ViewTraining].[ClientId] AS [ClientId], 
+    [ViewTraining].[IdTraining] AS [IdTraining], 
+    [ViewTraining].[DoneExercises] AS [DoneExercises]
+    FROM [dbo].[ViewTraining] AS [ViewTraining]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Achiev_Trainer" Association="Self.FK_Achiev_Trainer">
             <End Role="Trainer" EntitySet="Trainer" />
             <End Role="Achiev" EntitySet="Achiev" />
@@ -327,8 +469,8 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Client" EntitySet="Client" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exercises_Training" Association="Self.FK_Exercises_Training">
-            <End Role="Training" EntitySet="Training" />
+          <AssociationSet Name="FK_Exercises_TypeExercises" Association="Self.FK_Exercises_TypeExercises">
+            <End Role="TypeExercises" EntitySet="TypeExercises" />
             <End Role="Exercises" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Stuts" Association="Self.FK_Request_Stuts">
@@ -342,6 +484,14 @@
           <AssociationSet Name="FK_Trainer_Users1" Association="Self.FK_Trainer_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Trainer" EntitySet="Trainer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Exercises" Association="Self.FK_Training_Exercises">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Trainer1" Association="Self.FK_Training_Trainer1">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Training" EntitySet="Training" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Pol" Association="Self.FK_Users_Pol">
             <End Role="Pol" EntitySet="Pol" />
@@ -419,9 +569,9 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Client" EntitySet="Client" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exercises_Training" Association="SportModel.FK_Exercises_Training">
-            <End Role="Training" EntitySet="Training" />
+          <AssociationSet Name="FK_Training_Exercises" Association="SportModel.FK_Training_Exercises">
             <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="Training" EntitySet="Training" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Pol" Association="SportModel.FK_Users_Pol">
             <End Role="Pol" EntitySet="Pol" />
@@ -443,6 +593,18 @@
             <End Role="Type" EntitySet="Type" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="TypeExercises" EntityType="SportModel.TypeExercises" />
+          <AssociationSet Name="FK_Exercises_TypeExercises" Association="SportModel.FK_Exercises_TypeExercises">
+            <End Role="TypeExercises" EntitySet="TypeExercises" />
+            <End Role="Exercises" EntitySet="Exercises" />
+          </AssociationSet>
+          <EntitySet Name="View_RequstStuts" EntityType="SportModel.View_RequstStuts" />
+          <AssociationSet Name="FK_Training_Trainer1" Association="SportModel.FK_Training_Trainer1">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+          <EntitySet Name="View_TrainingDetails" EntityType="SportModel.View_TrainingDetails" />
+          <EntitySet Name="ViewTraining" EntityType="SportModel.ViewTraining" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -483,12 +645,14 @@
             <PropertyRef Name="IdExercises" />
           </Key>
           <Property Name="IdExercises" Type="Int32" Nullable="false" />
-          <Property Name="NameExercises" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Duration" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Replays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TraningId" Type="Int32" Nullable="false" />
-          <Property Name="RegularityExercises" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Training" Relationship="SportModel.FK_Exercises_Training" FromRole="Exercises" ToRole="Training" />
+          <Property Name="NameExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Replays" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="RegularityExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Training" Relationship="SportModel.FK_Training_Exercises" FromRole="Exercises" ToRole="Training" />
+          <Property Name="TypeExercisesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeExercises" Relationship="SportModel.FK_Exercises_TypeExercises" FromRole="Exercises" ToRole="TypeExercises" />
         </EntityType>
         <EntityType Name="Pol">
           <Key>
@@ -532,7 +696,7 @@
             <PropertyRef Name="IdTarget" />
           </Key>
           <Property Name="IdTarget" Type="Int32" Nullable="false" />
-          <Property Name="TargetName" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="TargetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="SportModel.FK_Client_Discounts" FromRole="Target" ToRole="Client" />
         </EntityType>
         <EntityType Name="Trainer">
@@ -546,6 +710,7 @@
           <NavigationProperty Name="Client" Relationship="SportModel.FK_Client_Trainer1" FromRole="Trainer" ToRole="Client" />
           <NavigationProperty Name="Request" Relationship="SportModel.FK_Request_Trainer" FromRole="Trainer" ToRole="Request" />
           <NavigationProperty Name="Users" Relationship="SportModel.FK_Trainer_Users1" FromRole="Trainer" ToRole="Users" />
+          <NavigationProperty Name="Training" Relationship="SportModel.FK_Training_Trainer1" FromRole="Trainer" ToRole="Training" />
         </EntityType>
         <EntityType Name="Training">
           <Key>
@@ -554,15 +719,19 @@
           <Property Name="IdTraining" Type="Int32" Nullable="false" />
           <Property Name="Progress" Type="Int32" Nullable="false" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ExercisesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="SportModel.FK_Client_Training" FromRole="Training" ToRole="Client" />
-          <NavigationProperty Name="Exercises" Relationship="SportModel.FK_Exercises_Training" FromRole="Training" ToRole="Exercises" />
+          <NavigationProperty Name="Exercises" Relationship="SportModel.FK_Training_Exercises" FromRole="Training" ToRole="Exercises" />
+          <Property Name="TrenerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trainer" Relationship="SportModel.FK_Training_Trainer1" FromRole="Training" ToRole="Trainer" />
+          <Property Name="DoneExercises" Type="Int32" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="IdType" />
           </Key>
           <Property Name="IdType" Type="Int32" Nullable="false" />
-          <Property Name="NameType" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="NameType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="SportModel.FK_Users_Type" FromRole="Type" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
@@ -651,17 +820,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exercises_Training">
-          <End Type="SportModel.Training" Role="Training" Multiplicity="1">
+        <Association Name="FK_Training_Exercises">
+          <End Type="SportModel.Exercises" Role="Exercises" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="SportModel.Exercises" Role="Exercises" Multiplicity="*" />
+          <End Type="SportModel.Training" Role="Training" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Training">
-              <PropertyRef Name="IdTraining" />
+            <Principal Role="Exercises">
+              <PropertyRef Name="IdExercises" />
             </Principal>
-            <Dependent Role="Exercises">
-              <PropertyRef Name="TraningId" />
+            <Dependent Role="Training">
+              <PropertyRef Name="ExercisesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -735,6 +904,101 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TypeExercises">
+          <Key>
+            <PropertyRef Name="IdTypeExercises" />
+          </Key>
+          <Property Name="IdTypeExercises" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exercises" Relationship="SportModel.FK_Exercises_TypeExercises" FromRole="TypeExercises" ToRole="Exercises" />
+        </EntityType>
+        <Association Name="FK_Exercises_TypeExercises">
+          <End Type="SportModel.TypeExercises" Role="TypeExercises" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SportModel.Exercises" Role="Exercises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeExercises">
+              <PropertyRef Name="IdTypeExercises" />
+            </Principal>
+            <Dependent Role="Exercises">
+              <PropertyRef Name="TypeExercisesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_RequstStuts">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Training_Trainer1">
+          <End Type="SportModel.Trainer" Role="Trainer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SportModel.Training" Role="Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="IdTrainer" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_TrainingDetails">
+          <Key>
+            <PropertyRef Name="IdTraining" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="NameExercises" />
+            <PropertyRef Name="Duration" />
+            <PropertyRef Name="RegularityExercises" />
+            <PropertyRef Name="Replays" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Progress" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="IdTraining" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="RegularityExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Replays" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Progress" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewTraining">
+          <Key>
+            <PropertyRef Name="TypeExercisesName" />
+            <PropertyRef Name="NameExercises" />
+            <PropertyRef Name="RegularityExercises" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Progress" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="IdTraining" />
+          </Key>
+          <Property Name="TypeExercisesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegularityExercises" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Progress" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="IdTraining" Type="Int32" Nullable="false" />
+          <Property Name="DoneExercises" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -788,8 +1052,9 @@
           <EntitySetMapping Name="Exercises">
             <EntityTypeMapping TypeName="SportModel.Exercises">
               <MappingFragment StoreEntitySet="Exercises">
+                <ScalarProperty Name="TypeExercisesId" ColumnName="TypeExercisesId" />
                 <ScalarProperty Name="RegularityExercises" ColumnName="RegularityExercises" />
-                <ScalarProperty Name="TraningId" ColumnName="TraningId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Replays" ColumnName="Replays" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="NameExercises" ColumnName="NameExercises" />
@@ -854,6 +1119,9 @@
           <EntitySetMapping Name="Training">
             <EntityTypeMapping TypeName="SportModel.Training">
               <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="DoneExercises" ColumnName="DoneExercises" />
+                <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+                <ScalarProperty Name="ExercisesId" ColumnName="ExercisesId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Progress" ColumnName="Progress" />
                 <ScalarProperty Name="IdTraining" ColumnName="IdTraining" />
@@ -882,6 +1150,57 @@
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdUsers" ColumnName="IdUsers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeExercises">
+            <EntityTypeMapping TypeName="SportModel.TypeExercises">
+              <MappingFragment StoreEntitySet="TypeExercises">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdTypeExercises" ColumnName="IdTypeExercises" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_RequstStuts">
+            <EntityTypeMapping TypeName="SportModel.View_RequstStuts">
+              <MappingFragment StoreEntitySet="View_RequstStuts">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_TrainingDetails">
+            <EntityTypeMapping TypeName="SportModel.View_TrainingDetails">
+              <MappingFragment StoreEntitySet="View_TrainingDetails">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Replays" ColumnName="Replays" />
+                <ScalarProperty Name="RegularityExercises" ColumnName="RegularityExercises" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="NameExercises" ColumnName="NameExercises" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdTraining" ColumnName="IdTraining" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewTraining">
+            <EntityTypeMapping TypeName="SportModel.ViewTraining">
+              <MappingFragment StoreEntitySet="ViewTraining">
+                <ScalarProperty Name="DoneExercises" ColumnName="DoneExercises" />
+                <ScalarProperty Name="IdTraining" ColumnName="IdTraining" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegularityExercises" ColumnName="RegularityExercises" />
+                <ScalarProperty Name="NameExercises" ColumnName="NameExercises" />
+                <ScalarProperty Name="TypeExercisesName" ColumnName="TypeExercisesName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

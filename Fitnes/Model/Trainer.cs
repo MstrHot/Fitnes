@@ -20,6 +20,7 @@ namespace Fitnes.Model
             this.Achiev = new HashSet<Achiev>();
             this.Client = new HashSet<Client>();
             this.Request = new HashSet<Request>();
+            this.Training = new HashSet<Training>();
         }
     
         public int IdTrainer { get; set; }
@@ -33,5 +34,7 @@ namespace Fitnes.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Training> Training { get; set; }
     }
 }

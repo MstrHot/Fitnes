@@ -44,7 +44,7 @@ namespace Fitnes.View.ViewPage
             TargetComboBox.DisplayMemberPath = "TargetName";
             TargetComboBox.SelectedValuePath = "IdTarget";
            
-            if ( App.CurrentClient!=null)
+            if ( App.CurrentClient.Target!=null)
             {
               
                 TargetComboBox.Text = App.CurrentClient.Target1.TargetName;

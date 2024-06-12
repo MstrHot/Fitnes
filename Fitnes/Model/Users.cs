@@ -32,6 +32,7 @@ namespace Fitnes.Model
         public Nullable<System.DateTime> DateBrith { get; set; }
         public byte[] Photo { get; set; }
         public string Nunber { get; set; }
+        public Nullable<int> Weight { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Client { get; set; }

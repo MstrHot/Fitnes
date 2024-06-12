@@ -44,7 +44,7 @@
             <Canvas Height="40" Width="270" Margin="0 20 0 0"  HorizontalAlignment="Center">
                 <TextBox x:Name="Telephone"    Width="270" Height="40" 
                  FontSize="15" BorderBrush="#FF10B9BC" VerticalContentAlignment="Bottom" Style="{StaticResource T6}" />
-                <TextBlock IsHitTestVisible="False" Grid.Row="1"   TextAlignment="Center" FontSize="25" Margin="0 0 0 50" Width="270" Height="40"  Text="Телефон"   >
+                <TextBlock IsHitTestVisible="False" Grid.Row="1"   TextAlignment="Center" FontSize="25" Margin="0 0 0 50" Width="270" Height="40"   Text="Телефон"   >
 
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -172,7 +172,7 @@
             </Button>
             <Button x:Name="buttonRegistration"
                     Height="30" Width="150"
-                    Content="Авторизация"
+                    Content="Регистрация"
                     Click="ButtonRegistration_Click">
             </Button>
 

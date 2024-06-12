@@ -23,5 +23,8 @@ namespace Fitnes.Model
         public int Quantity { get; set; }
         public int Progress { get; set; }
         public int ClientId { get; set; }
+        public Nullable<int> DoneExercises { get; set; }
+        public int ExercisesId { get; set; }
+        public int TrenerId { get; set; }
     }
 }

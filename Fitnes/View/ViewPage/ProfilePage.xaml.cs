@@ -2,6 +2,7 @@
 using Microsoft.Build.BuildEngine;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,21 +34,25 @@ namespace Fitnes.View.ViewPage
             Surname.Text = App.CurrentUser.Surname;
             Patronymic.Text = App.CurrentUser.Patronymic;
             Telephone.Text = App.CurrentUser.Nunber;
+            Password.Text = App.CurrentUser.Password;
             Mail.Text = App.CurrentUser.Email;
             arrayPol = db.context.Pol.ToList();
             PolComboBox.ItemsSource = arrayPol;
             PolComboBox.DisplayMemberPath = "NamePol";
             PolComboBox.SelectedValuePath = "IdPol";
-            PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
+            
             arrayTarget = db.context.Target.ToList();
             TargetComboBox.ItemsSource = arrayTarget;
             TargetComboBox.DisplayMemberPath = "TargetName";
             TargetComboBox.SelectedValuePath = "IdTarget";
-           
-            if ( App.CurrentClient.Target!=null)
+            WeightTextBox.Text = Convert.ToString(App.CurrentUser.Weight);
+
+            if(App.CurrentUser.Pol1!= null)
+                PolComboBox.Text = App.CurrentUser.Pol1.NamePol;
+            if (App.CurrentUser.UserType == 3)   
             {
-              
-                TargetComboBox.Text = App.CurrentClient.Target1.TargetName;
+                if (App.CurrentClient.Target != null)
+                    TargetComboBox.Text = App.CurrentClient.Target1.TargetName;
 
             }
            
@@ -73,15 +78,21 @@ namespace Fitnes.View.ViewPage
             try
 
             {
-                Users users = new Users()
-                {
-                    
-                    Name = UserName.Text,
-                    Surname = Surname.Text
-                    
-};
 
-                db.context.Users.Add(users);
+
+                App.CurrentUser.Name = UserName.Text;
+                App.CurrentUser.Surname = Surname.Text;
+                App.CurrentUser.Patronymic = Patronymic.Text;
+                App.CurrentUser.Email = Mail.Text;
+                App.CurrentUser.Password = Password.Text;
+                App.CurrentUser.Pol = Convert.ToInt32(PolComboBox.SelectedValue);
+                App.CurrentUser.Nunber = Telephone.Text;
+                App.CurrentUser.Weight = Convert.ToInt32(WeightTextBox.Text);
+                App.CurrentClient.Target = Convert.ToInt32(TargetComboBox.SelectedValue);
+
+
+                db.context.Users.AddOrUpdate(App.CurrentUser);
+                db.context.Client.AddOrUpdate(App.CurrentClient);
                 db.context.SaveChanges();
 
                 MessageBox.Show("Добавление выполнено успешно !",

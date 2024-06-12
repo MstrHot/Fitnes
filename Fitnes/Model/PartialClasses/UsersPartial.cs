@@ -9,7 +9,7 @@ namespace Fitnes.Model
 {
     public partial class Users
     {
-        public string FIO => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
+        public  string FIO => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
     }
     public partial class View_RequstStuts 
     {

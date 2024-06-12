@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,6 +25,7 @@ namespace Fitnes.View.ViewPage
     {
         Core db = new Core();
         List<Achiev> arrayAchiev;
+        List<Request> arrayRequests;
        
 
 
@@ -40,8 +42,8 @@ namespace Fitnes.View.ViewPage
                          join t in db.context.Trainer on u.IdUsers equals t.UserId
                          where u.UserType == 2
                          select new { User = u, Trainer = t };
-            
 
+       
 
             TrainerComboBox.ItemsSource = result.ToList();
 
@@ -53,14 +55,48 @@ namespace Fitnes.View.ViewPage
                               select new { IdRequest = r, Type = s };
 
             OrderListView.ItemsSource = db.context.View_RequstStuts.Where(x=> x.ClientId == App.CurrentClient.IdClient).ToList();
-          
 
+
+            
+
+         
 
         }
 
         private void ApplicationButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            arrayRequests = db.context.Request.Where(x=> x.ClientId== App.CurrentClient.IdClient).ToList();
+            if (arrayRequests.Where(x=> x.TrenerId == Convert.ToInt32(TrainerComboBox.SelectedValue)).Count() < 1 )
+            {
 
+           
+            Request newRequest = new Request()
+
+            {
+                StatusId=3,
+                ClientId=App.CurrentClient.IdClient,
+                TrenerId= Convert.ToInt32(TrainerComboBox.SelectedValue)
+               
+
+            };
+
+
+
+            db.context.Request.Add(newRequest);
+            db.context.SaveChanges();
+
+
+            MessageBox.Show("Заявка выполнено успешно !",
+            "Уведомление",
+            MessageBoxButton.OK,
+            MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Вторую заявку нельзя отправить одному трениру");
+                MessageBox.Show("Повторно можео будет отправить заявку тренеру после отказа спустя 7 дней");
+            }
         }
 
         private void TrainerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

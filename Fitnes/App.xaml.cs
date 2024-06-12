@@ -18,13 +18,16 @@ namespace Fitnes
     {
         Core db = new Core();
         
-        public static Users CurrentUserType { get; set; } = null;
+       
         public static Users CurrentUser { get; set; } = null;
-        public static Pol CurrentPol { get; set; } = null;
         public static Client CurrentClient { get; set; } = null;
         public static Trainer CurrentTrainer { get; set; } = null;
-        public static Users CurrentTrainerId { get; set; } = null;
-      
-        //public string FIO => Name + " " + Surname[0] + "." + Patronymic[0] + ".";
+        public static View_TrainingDetails CurrentTrainingDetails { get; set; } = null;
+        public static Request CurrentRequest { get; set; } = null;
+        public static Exercises CurrentExercises { get; set; } = null;
+        public static Training CurrentTraining { get; set; } = null;
+        public static Achiev CurrentAchiev { get; set; } = null;
+
+
     }
 }

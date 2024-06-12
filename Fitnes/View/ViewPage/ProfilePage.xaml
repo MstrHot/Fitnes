@@ -41,6 +41,8 @@
             <ComboBox x:Name="PolComboBox"  SelectionChanged="Pol_SelectionChanged"   Height="32" />
             <TextBlock Text="Телефон" FontSize="20" Opacity="0.5"/>
             <TextBox x:Name="Telephone" Text="Телефон пользователя"/>
+            <TextBlock Text="Пароль" FontSize="20" Opacity="0.5"/>
+            <TextBox x:Name="Password" Text="пароль" />
             <TextBlock Text="Почта" FontSize="20" Opacity="0.5"/>
             <TextBox x:Name="Mail" Text="Почта пользователя"/>
            
@@ -53,6 +55,7 @@
             <ComboBox x:Name="TargetComboBox" SelectionChanged="TargetComboBox_SelectionChanged" Height="32" />
             <TextBlock Text="Коментарий к цели" FontSize="20" Opacity="0.5"/>
             <TextBox x:Name="CommentTextBox" Text="коментари пользователя" />
+           
         </StackPanel>
         <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Width="150" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" />
     </Grid>

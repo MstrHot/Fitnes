@@ -29,9 +29,16 @@
         <!--Применяем в стиле шаблон отображения текстовых данных HeaderTemplate-->
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="0 0 2 2"/>
+        
+        
     </Style>
-   
-    <Style TargetType="GridViewColumnHeader">
+    <Style TargetType="DataGrid">
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+    </Style>
+         
+            <Style TargetType="GridViewColumnHeader">
         <Setter Property="FontSize" Value="24"/>
        
     </Style>

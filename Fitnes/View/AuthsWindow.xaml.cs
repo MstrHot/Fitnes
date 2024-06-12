@@ -52,11 +52,7 @@ namespace Fitnes.View
                         .FirstOrDefault();
                     App.CurrentUser = item;
                     App.CurrentClient = db.context.Client.FirstOrDefault(x=>x.UserId== item.IdUsers);
-
-                    Users Type = db.context.Users.Where(
-                        x => x.UserType == 2).FirstOrDefault();
-                    App.CurrentUserType = Type;
-                    App.CurrentTrainer = db.context.Trainer.FirstOrDefault();
+                    App.CurrentTrainer = db.context.Trainer.FirstOrDefault(x => x.UserId == item.IdUsers);
                     
 
                     this.Hide(); // Скрываем нынешнее окно

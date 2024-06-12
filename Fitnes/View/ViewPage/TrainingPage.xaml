@@ -42,27 +42,27 @@
                 </ListView.View>
         </ListView>
             <DockPanel Margin="0 40 0 0">
-            <Button x:Name="DelTraning" Click="DelTraning_Click" Width="145" Height="50" Content="Удалить" />
-                <Button x:Name="AddTraning" Click="AddTraning_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Добавить"/>
+           
             </DockPanel>
         </StackPanel>
         <StackPanel x:Name="TrainingDetailsStackPanel" Visibility="Hidden"   Grid.Row="1" Grid.Column="1">
             <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
 
-            <DataGrid   Margin="0 100 0 0"
+            <DataGrid    Margin="0 100 0 0"
                   x:Name="TrainingDetailsGrid" AutoGenerateColumns="False"  ColumnWidth="*" FontSize="25"  >
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="Вид тренировки" Binding="{Binding Path=Name}" />
-                    <DataGridTextColumn  Header="Названия тренировки" Binding="{Binding Path=NameExercises}" />
-                    <DataGridTextColumn Header="Время выполнение"  Binding="{Binding Path=Duration}" />
-                    <DataGridTextColumn Header="Количество раз в неделю"  Binding="{Binding Path=RegularityExercises}" />
-                    <DataGridTextColumn Header="Подходы" Binding="{Binding Path=Replays}" />
-                    <DataGridTextColumn Header="Сделано Подходов" Binding="{Binding Path=DoneExercises}" />
-                    <DataGridTextColumn Header="За подход" Binding="{Binding Path=Quantity}" />
-                    <DataGridTextColumn Header="Прогресс" Binding="{Binding Path=Progress}" />
+                    <DataGridTextColumn    Header="Вид тренировки" Binding="{Binding Path=Name}" IsReadOnly="True" />
+                    <DataGridTextColumn  Header="Названия тренировки" Binding="{Binding Path=NameExercises}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Время выполнение"  Binding="{Binding Path=Duration}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Количество раз в неделю"  Binding="{Binding Path=RegularityExercises}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Подходы" Binding="{Binding Path=Replays}" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="ExercisesDataGridColumn" Header="Сделано Подходов" Binding="{Binding Path=DoneExercises}"   IsReadOnly="False" />
+                    <DataGridTextColumn Header="За подход" Binding="{Binding Path=Quantity}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Прогресс" Binding="{Binding Path=Progress}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
 
+            <Button x:Name="SaveTrainingButtun" Click="SaveTrainingButtun_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Сохранить"/>
         </StackPanel>
 
     </Grid>

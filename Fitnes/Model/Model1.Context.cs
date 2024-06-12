@@ -41,8 +41,8 @@ namespace Fitnes.Model
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<TypeExercises> TypeExercises { get; set; }
         public virtual DbSet<View_RequstStuts> View_RequstStuts { get; set; }
-        public virtual DbSet<View_TrainingDetails> View_TrainingDetails { get; set; }
         public virtual DbSet<ViewTraining> ViewTraining { get; set; }
+        public virtual DbSet<View_TrainingDetails> View_TrainingDetails { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

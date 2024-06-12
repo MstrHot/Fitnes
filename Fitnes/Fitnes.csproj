@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Assets\Collection\Collection.cs" />
     <Compile Include="Model\Achiev.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -139,14 +140,18 @@
     <Compile Include="View\AuthsWindow.xaml.cs">
       <DependentUpon>AuthsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CheckClasses\RegCheck.cs" />
     <Compile Include="View\InfoWindow.xaml.cs">
       <DependentUpon>InfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewPage\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="View\ViewPage\AchivPage.xaml.cs">
+      <DependentUpon>AchivPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewPage\ApplicationsClientPage.xaml.cs">
+      <DependentUpon>ApplicationsClientPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewPage\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -154,11 +159,11 @@
     <Compile Include="View\ViewPage\TrainersPage.xaml.cs">
       <DependentUpon>TrainersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewPage\TrainingDetailsPage.xaml.cs">
-      <DependentUpon>TrainingDetailsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewPage\TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewPage\TrainingTrainersPage.xaml.cs">
+      <DependentUpon>TrainingTrainersPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Dictionraies\Dictionary.xaml">
       <SubType>Designer</SubType>
@@ -200,7 +205,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewPage\Page1.xaml">
+    <Page Include="View\ViewPage\AchivPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPage\ApplicationsClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,11 +221,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewPage\TrainingDetailsPage.xaml">
+    <Page Include="View\ViewPage\TrainingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewPage\TrainingPage.xaml">
+    <Page Include="View\ViewPage\TrainingTrainersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

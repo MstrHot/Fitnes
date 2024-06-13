@@ -51,12 +51,12 @@
             <DataGrid    Margin="0 100 0 0"
                   x:Name="TrainingDetailsGrid" AutoGenerateColumns="False"  ColumnWidth="*" FontSize="25"  >
                 <DataGrid.Columns >
-                    <DataGridTextColumn    Header="Вид тренировки" Binding="{Binding Path=Name}" IsReadOnly="True" />
+                    <DataGridTextColumn    Header="Вид тренировки" Binding="{Binding Path=Name}" />
                     <DataGridTextColumn  Header="Названия тренировки" Binding="{Binding Path=NameExercises}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Время выполнение"  Binding="{Binding Path=Duration}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Количество раз в неделю"  Binding="{Binding Path=RegularityExercises}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Подходы" Binding="{Binding Path=Replays}" IsReadOnly="True"/>
-                    <DataGridTextColumn x:Name="ExercisesDataGridColumn" Header="Сделано Подходов" Binding="{Binding Path=DoneExercises}"   IsReadOnly="False" />
+                    <DataGridTextColumn x:Name="ExercisesDataGridColumn" Header="Сделано Подходов" Binding="{Binding Path=DoneExercises}"   IsReadOnly="True" />
                     <DataGridTextColumn Header="За подход" Binding="{Binding Path=Quantity}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Прогресс" Binding="{Binding Path=Progress}" IsReadOnly="True"/>
                 </DataGrid.Columns>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +84,7 @@ namespace Fitnes.View.ViewPage
 
 
 
-            db.context.Request.Add(newRequest);
+            db.context.Request.AddOrUpdate(newRequest);
             db.context.SaveChanges();
 
 

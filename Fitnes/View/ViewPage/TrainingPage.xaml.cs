@@ -25,9 +25,10 @@ namespace Fitnes.View.ViewPage
     /// </summary>
     public partial class TrainingPage : Page
     {
-        int activeTraining;
+        int idActiveTraining;
         Core db = new Core();
-        ObservableCollection<View_TrainingDetails> collectionrainingDetails;
+        List<View_TrainingDetails> arrayDetail;
+        ObservableCollection<string> collectionrainingDetails;
       
         public TrainingPage()
         {
@@ -37,35 +38,72 @@ namespace Fitnes.View.ViewPage
             TrainingGrid.SelectedValuePath = "IdTraining";
 
         }
-      
-      
-      
-        
+
+
+
+
 
         private void TrainingGridSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TrainingAllStackPanel.Visibility = Visibility.Hidden;
-            TrainingDetailsStackPanel.Visibility = Visibility.Visible;
-            activeTraining = Convert.ToInt32(TrainingGrid.SelectedValue);
-            
-          
-            TrainingDetailsGrid.ItemsSource = db.context.View_TrainingDetails.Where(x=>x.IdTraining == activeTraining).ToList();
-            App.CurrentTrainingDetails = db.context.View_TrainingDetails.FirstOrDefault(x => x.IdTraining == activeTraining);
+            try
+            {
+                TrainingAllStackPanel.Visibility = Visibility.Hidden;
+                TrainingDetailsStackPanel.Visibility = Visibility.Visible;
+                idActiveTraining = Convert.ToInt32(TrainingGrid.SelectedValue);
+                var resultOrder = (from t in db.context.Training
+
+                                   join ex in db.context.Exercises on t.ExercisesId equals ex.IdExercises
+                                   join typeE in db.context.TypeExercises on ex.TypeExercisesId equals typeE.IdTypeExercises
+                                   where t.IdTraining == idActiveTraining
+                                   select new
+                                   {
+                                       IdTraining = t.IdTraining,
+                                       Name = typeE.Name,
+                                       NameExercises = ex.NameExercises,
+                                       Duration = ex.Duration,
+                                       RegularityExercises = ex.RegularityExercises,
+                                       Replays = ex.Replays,
+                                       Quantity = ex.Quantity,
+                                       Progress = t.Progress,
+                                       ClientId = t.ClientId,
+                                       DoneExercises = t.DoneExercises,
+                                       ExercisesId = t.ExercisesId,
+                                       TrenerId = t.TrenerId
+                                   }).ToList();
 
 
 
+
+
+                //Training activeTraining = TrainingGrid.SelectedValue as Training;
+                //activeTraining.IdTraining=
+
+                App.CurrentTrainingDetails = db.context.View_TrainingDetails.FirstOrDefault(x => x.IdTraining == idActiveTraining);
+                //arrayDetail = resultOrder.Where(x=> x.IdTraining,);
+                TrainingDetailsGrid.ItemsSource = resultOrder;
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+
+
+
+
+            }
         }
 
-      
 
-      
+
+
 
         private void SaveTrainingButtun_Click(object sender, RoutedEventArgs e)
         {
             //try
             //{
             Console.WriteLine();
-            //App.CurrentTrainingDetails = (View_TrainingDetails)TrainingDetailsGrid.Items.CurrentItem;
+      
             //Console.WriteLine(App.CurrentTrainingDetails);
             Training training = new Training()
             {
@@ -82,8 +120,9 @@ namespace Fitnes.View.ViewPage
 
 
 
-            db.context.Training.AddOrUpdate(training);
+            db.context.Training.Add(training);
             db.context.SaveChanges();
+            
             MessageBox.Show("Сохрание успешно",
                  "Уведомление",
                 MessageBoxButton.OK,

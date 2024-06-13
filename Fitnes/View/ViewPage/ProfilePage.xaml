@@ -18,6 +18,7 @@
     </Page.Resources>
     
     <Grid >
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -58,5 +59,11 @@
            
         </StackPanel>
         <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Width="150" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" />
+    </Grid>
+    <Grid Background="red" Visibility="Hidden"  Opacity="0.8">
+            <StackPanel>
+                
+            </StackPanel>
+    </Grid>
     </Grid>
 </Page>

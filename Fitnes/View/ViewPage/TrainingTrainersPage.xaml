@@ -46,7 +46,7 @@
             
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="TrainingAllStackPanel" Grid.Row="1" Grid.Column="1">
+        <StackPanel Visibility="Hidden" x:Name="TrainingAllStackPanel" Grid.Row="1"  Width="890" Grid.Column="1">
             <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
             <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="TrainingGridSelectionChanged"
                   x:Name="TrainingGrid"  FontSize="25"  >
@@ -60,15 +60,15 @@
                 </ListView.View>
             </ListView>
             <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="AllTrainingListView_SelectionChanged"
-                  x:Name="AllTrainingListView"  FontSize="25"  >
+                  x:Name="AllTrainingListView"   FontSize="25"  >
                 <ListView.View >
-                    <GridView >
+                    <GridView  >
                         <GridViewColumn  Width="200" Header="Вид тренировки" DisplayMemberBinding="{Binding Path=TypeExercisesName}" />
-                        <GridViewColumn Width="250"  Header="Названия тренировки" DisplayMemberBinding="{Binding Path=NameExercises}" />
-                        <GridViewColumn Width="250"  Header="Длительность" DisplayMemberBinding="{Binding Path=Duration}" />
-                        <GridViewColumn Width="250"  Header="Повторы" DisplayMemberBinding="{Binding Path=Replays}" />
-                        <GridViewColumn Width="250"  Header="Количество" DisplayMemberBinding="{Binding Path=Quantity}" />
-                        <GridViewColumn Width="310" Header="Количество раз в неделю"  DisplayMemberBinding="{Binding Path=RegularityExercises}" />
+                        <GridViewColumn Width="250"   Header="Названия тренировки" DisplayMemberBinding="{Binding Path=NameExercises}" />
+                        <GridViewColumn Width="200"  Header="Длительность" DisplayMemberBinding="{Binding Path=Duration}" />
+                        <GridViewColumn Width="120"  Header="Повторы" DisplayMemberBinding="{Binding Path=Replays}" />
+                        <GridViewColumn Width="150"  Header="Количество" DisplayMemberBinding="{Binding Path=Quantity}" />
+                        <GridViewColumn Width="310" Header="Количество раз в неделю"   DisplayMemberBinding="{Binding Path=RegularityExercises}" />
                    
                     </GridView>
                 </ListView.View>

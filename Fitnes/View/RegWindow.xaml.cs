@@ -68,16 +68,17 @@ namespace Fitnes.View
         private void ButtonRegistration_Click(object sender, RoutedEventArgs e)
         {
 
-            string password = Password.Password;
-            string telephone;
-            if (Regex.Match(Telephone.Text, "[+]").Success)
+            string password = Password.Password.Trim();
+            password.Replace(" ", "");
+            string telephone =Telephone.Text.Trim();
+            telephone.Replace(" ", "");
+            if (Regex.Match(telephone, "[+]").Success)
             {
-                 telephone = Telephone.Text.Substring(1);
+                 telephone = telephone.Substring(1);
             }
-            else
-            {
-                 telephone = Telephone.Text;
-            }
+           
+          
+           
            
             if (RegCheck.TelephoneCheck(telephone) ==2)
             {

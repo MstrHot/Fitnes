@@ -42,6 +42,7 @@
         <Setter Property="FontSize" Value="24"/>
        
     </Style>
+   
     
     
 </ResourceDictionary>

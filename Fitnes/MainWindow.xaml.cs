@@ -35,6 +35,7 @@ namespace Fitnes
                 MyWorkouts.Content = "Тренировки учеников";
                 MyCoach.Content = "Заявки";
                 MyAchievements.Visibility = Visibility.Visible;
+                NewWorkouts.Visibility = Visibility.Visible;
             }
             MainFrame.Navigate(new ProfilePage());
             
@@ -54,6 +55,7 @@ namespace Fitnes
             MyProfile.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#10B9BC");
             MyWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
             MyCoach.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            NewWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
         }
 
         private void MyWorkouts_Click(object sender, RoutedEventArgs e)
@@ -71,6 +73,7 @@ namespace Fitnes
             MyWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#10B9BC");
             MyProfile.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
             MyCoach.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            NewWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
 
         }
 
@@ -83,6 +86,7 @@ namespace Fitnes
             MyWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
             MyProfile.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
             MyCoach.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            NewWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
         }
 
         private void MyCoach_Click(object sender, RoutedEventArgs e)
@@ -99,6 +103,7 @@ namespace Fitnes
             MyCoach.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#10B9BC");
             MyWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
             MyProfile.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            NewWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -109,6 +114,16 @@ namespace Fitnes
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void NewWorkouts_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AddNewWorkoutsPage());
+            NewWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#10B9BC");
+            MyAchievements.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            MyCoach.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            MyWorkouts.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
+            MyProfile.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#ffffff");
         }
     }
 }

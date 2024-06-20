@@ -1,4 +1,6 @@
 ﻿using Fitnes.Model;
+using Fitnes.View.CheckClasses;
+using Fitnes.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +19,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Fitnes.View.ViewPage
 {
@@ -28,7 +32,9 @@ namespace Fitnes.View.ViewPage
         int idActiveTraining;
         Core db = new Core();
         List<View_TrainingDetails> arrayDetail;
+        List<Exercises> arryExercises ;
         ObservableCollection<string> collectionrainingDetails;
+
       
         public TrainingPage()
         {
@@ -100,38 +106,121 @@ namespace Fitnes.View.ViewPage
 
         private void SaveTrainingButtun_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            Console.WriteLine();
-      
-            //Console.WriteLine(App.CurrentTrainingDetails);
-            Training training = new Training()
+            
+            try
             {
-                IdTraining = Convert.ToInt32(TrainingGrid.SelectedValue),
-                DoneExercises = App.CurrentTrainingDetails.DoneExercises,
-                ClientId = App.CurrentClient.IdClient,
-                ExercisesId = App.CurrentTrainingDetails.ExercisesId,
-                TrenerId = App.CurrentTrainingDetails.TrenerId,
-                Progress = App.CurrentTrainingDetails.Progress
-            };
+                UserSaveCheck newObject = new UserSaveCheck();
+                bool result = newObject.TrainingSaveExercises(ExercisesTextBox.Text);
+               
+               if (result)
+                {
+
+                    int SearchProgress = Convert.ToInt32(ExercisesTextBox.Text) % (App.CurrentTrainingDetails.Replays % 100) * 10;
+                    if(Convert.ToInt32(ExercisesTextBox.Text) == App.CurrentTrainingDetails.Replays)
+                    {
+                        SearchProgress = 100;
+                    }
+                Training training = new Training()
+                {
+                    IdTraining = App.CurrentTrainingDetails.IdTraining,
+                    DoneExercises = Convert.ToInt32(ExercisesTextBox.Text),
+                    ClientId = App.CurrentClient.IdClient,
+                    ExercisesId = App.CurrentTrainingDetails.ExercisesId,
+                    TrenerId = App.CurrentTrainingDetails.TrenerId,
+                    Progress = SearchProgress
+                };
 
 
+
+
+
+
+                db.context.Training.AddOrUpdate(training);
+                db.context.SaveChanges();
+
+                MessageBox.Show("Сохрание успешно",
+                     "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Inputxercises_Click(object sender, RoutedEventArgs e)
+        {
+            InputxercisesGrid.Visibility = Visibility.Visible;
+            ExercisesTextBox.Text = App.CurrentTrainingDetails.DoneExercises.ToString();
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            InputxercisesGrid.Visibility = Visibility.Hidden;
+        }
+
+      
+        private void ExportExceleButton_Click(object sender, RoutedEventArgs e)
+        {
            
 
+            /*создаем файл Excel*/
+
+            var aplication = new Excel.Application();
+
+            aplication.Visible = true;
+
+            /*количество листов*/
+
+            aplication.SheetsInNewWorkbook = 1;
+
+            /*добавляем рабочую книгу*/
+
+            Excel.Workbook workbook = aplication.Workbooks.Add(System.Type.Missing);
+
+            /*создаем лист*/
+
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+
+            worksheet.Name = "Trining"; //имя листа нужно вводить латинскими буквами
+
+            /*заголовки вывод в Excel (в первую строку)*/
+
+            worksheet.Cells[1][1] = "Номер тренировки";
+            worksheet.Cells[2][1] = "Вид тренировик";
+            worksheet.Cells[3][1] = "Название тренировик";
+            worksheet.Cells[4][1] = "Время";
+            worksheet.Cells[5][1] = "Подходы";
+            worksheet.Cells[6][1] = "Сделано подходов";
+            worksheet.Cells[7][1] = "За подход";
+            worksheet.Cells[8][1] = "Количество за неделю";
+            worksheet.Cells[9][1] = "Прогресс";
 
 
-            db.context.Training.Add(training);
-            db.context.SaveChanges();
-            
-            MessageBox.Show("Сохрание успешно",
-                 "Уведомление",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Критический сбор в работе приложения:", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //}
+            /*вывод данных из массива в Excel*/
+
+            int rowIndex = 2;  //номер строки для вывода данных из массива
+
+            foreach (var item in arryExercises)
+
+            {
+
+                worksheet.Cells[1][rowIndex] = item.IdExercises;
+                worksheet.Cells[2][rowIndex] = item.TypeExercisesId;
+                worksheet.Cells[3][rowIndex] = item.NameExercises;
+                worksheet.Cells[4][rowIndex] = item.Duration;
+                worksheet.Cells[5][rowIndex] = item.Replays;
+                worksheet.Cells[6][rowIndex] = item.Quantity;
+                worksheet.Cells[7][rowIndex] = item.RegularityExercises;
+                worksheet.Cells[8][rowIndex] = item.RegularityExercises;
+                worksheet.Cells[9][rowIndex] = App.CurrentTraining.Progress;
+
+                rowIndex++;
+
+            }
         }
     }
 }

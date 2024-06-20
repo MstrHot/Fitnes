@@ -17,8 +17,8 @@
         </ResourceDictionary>
       
     </Page.Resources>
- 
-    <Grid >
+    <Grid>
+        <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -28,7 +28,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="TrainingAllStackPanel" Grid.Row="1" Grid.Column="1">
-        <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
+            <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
             <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="TrainingGridSelectionChanged"
                   x:Name="TrainingGrid"  FontSize="25"  >
                 <ListView.View >
@@ -40,9 +40,9 @@
                         <GridViewColumn Width="130" Header="Прогресс" DisplayMemberBinding="{Binding Path=Progress}" />
                     </GridView>
                 </ListView.View>
-        </ListView>
+            </ListView>
             <DockPanel Margin="0 40 0 0">
-           
+
             </DockPanel>
         </StackPanel>
         <StackPanel x:Name="TrainingDetailsStackPanel" Visibility="Hidden"   Grid.Row="1" Grid.Column="1">
@@ -61,9 +61,24 @@
                     <DataGridTextColumn Header="Прогресс" Binding="{Binding Path=Progress}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <Button x:Name="SaveTrainingButtun" Click="SaveTrainingButtun_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Сохранить"/>
+                <DockPanel>
+                    <Button x:Name="ExportExceleButton" Click="ExportExceleButton_Click" Width="150" Height="50" Content="Вывести в эксель" />
+                    <Button x:Name="Inputxercises" Click="Inputxercises_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Ввести количествл повторов"/>
+                </DockPanel>
+                
         </StackPanel>
 
+    </Grid>
+        <Grid x:Name="InputxercisesGrid" Background="#10B9BC" Visibility="Hidden"  Opacity="0.8">
+            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="900 -100 0 0" 
+            Text="✖" FontSize="30" Style="{StaticResource T9}"
+                    MouseDown="TextBlock_MouseDown"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBlock Text="Выведите сколько подходов сделали"  FontSize="40" FontWeight="Bold"/>
+                <TextBox x:Name="ExercisesTextBox"  VerticalAlignment="Center" Text="sdadad" FontSize="30" Width="200" Margin="0 20 0 0" />
+                <Button Foreground="Black" x:Name="SaveTrainingButtun" Click="SaveTrainingButtun_Click" HorizontalAlignment="Right"  Width="145" Height="50" Content="Сохранить"/>
+            </StackPanel>
+    </Grid>
     </Grid>
 </Page>

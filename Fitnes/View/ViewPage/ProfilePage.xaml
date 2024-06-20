@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </Page.Resources>
     
-    <Grid >
+   
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -58,12 +58,17 @@
             <TextBox x:Name="CommentTextBox" Text="коментари пользователя" />
            
         </StackPanel>
+        <DockPanel    HorizontalAlignment="Right" Margin="0 -100 90 0" Width="300" Height="400" Grid.Row="1" Grid.Column="1" >
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="2">
+                <StackPanel>
+                <Image x:Name="UserImage"  Height="250" Width="300" Margin="0 20 0 0" Source="/View/ViewPage/изображение-PhotoRoom.png-PhotoRoom(3).png"/>
+                <Button x:Name="ChangeImageButton" Content="Загрузить фотографию" Click="ChangeImageButton_Click" Margin="0 50 0 0" Width="200" Height="50"  />
+                </StackPanel>
+            </Border>
+           
+        </DockPanel>
         <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Width="150" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" />
     </Grid>
-    <Grid Background="red" Visibility="Hidden"  Opacity="0.8">
-            <StackPanel>
-                
-            </StackPanel>
-    </Grid>
-    </Grid>
+    
+   
 </Page>

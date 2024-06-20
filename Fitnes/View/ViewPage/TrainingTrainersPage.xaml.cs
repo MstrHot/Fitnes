@@ -1,4 +1,5 @@
 ﻿using Fitnes.Model;
+using Fitnes.View.CheckClasses;
 using Microsoft.Build.BuildEngine;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Fitnes.View.ViewPage
     public partial class TrainingTrainersPage : Page
     {
         Core db = new Core();
+        List<TypeExercises> arrayTypeExercises;
         public TrainingTrainersPage()
         {
             InitializeComponent();
@@ -79,6 +81,7 @@ namespace Fitnes.View.ViewPage
                                      }).ToList();
             AllTrainingListView.ItemsSource = resultAlltraining;
             AllTrainingListView.SelectedValuePath = "IdExercises";
+            
         }
 
         private void TrainingGridSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,7 +91,62 @@ namespace Fitnes.View.ViewPage
 
         private void DelTraninButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+
+                var item = TrainingGrid.SelectedItems as Training ;
+
+                //проверка того, что пользователь выбрал строки для удаления
+
+                if (item == null)
+                {
+                    MessageBox.Show("Вы не выбрали ни одной строки");
+                    return;
+                }
+                else
+                {
+                    //выполним удаление только в том случае, если пользователь даст согласие на удаление
+
+                    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить строку?", "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+
+                        //удаляем выбранную строку
+
+                        db.context.Training.Remove(item);
+
+                        db.context.SaveChanges();
+
+                        MessageBox.Show("Информация удалена");
+
+                        //обновление DataGrid
+                        var activeTraining = Convert.ToInt32(StudentsGrid.SelectedValue);
+                        var resultTrainingGrid = (from ex in db.context.Exercises
+                                      join t in db.context.Training on ex.IdExercises equals t.ExercisesId
+                                      join type in db.context.TypeExercises on ex.TypeExercisesId equals type.IdTypeExercises
+
+                                      where t.ClientId == activeTraining
+                                      select new
+                                      {
+                                          IdExercises = ex.IdExercises,
+                                          TypeExercisesName = type.Name,
+                                          NameExercises = ex.NameExercises,
+                                          RegularityExercises = ex.RegularityExercises,
+                                          Progress = t.Progress
+                                      }).ToList();
+                        TrainingGrid.ItemsSource = resultTrainingGrid;
+
+                    }
+
+                }
+            }
+
+            catch (Exception)
+
+            {
+                MessageBox.Show("Данные не удалены. ");
+            }
         }
 
         private void AddTraninButton_Click(object sender, RoutedEventArgs e)
@@ -120,9 +178,67 @@ namespace Fitnes.View.ViewPage
             //}
         }
 
+     
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AddNewTraningGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void AddNewTraningButon_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewTraningGrid.Visibility = Visibility.Visible;
+            arrayTypeExercises = db.context.TypeExercises.ToList();
+            TypeTrainingComboBox.ItemsSource = arrayTypeExercises;
+            TypeTrainingComboBox.DisplayMemberPath = "Name";
+            TypeTrainingComboBox.SelectedValuePath = "IdTypeExercises";
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+
+            {
+                TrainerSaveCheck newObject = new TrainerSaveCheck();
+                bool result = newObject.CheckAddNewWorkoutsPage(NameTrainingTextBox.Text, Convert.ToString(TypeTrainingComboBox.SelectedValue),
+                    DurationTextBox.Text, ReplaysTextBox.Text,
+                    QuantityTextBox.Text, RegularityExercisesTextBox.Text
+                    );
+
+                if (result)
+                {
+
+
+                    Exercises exercises = new Exercises
+                    {
+                        NameExercises = NameTrainingTextBox.Text,
+                        TypeExercisesId = Convert.ToInt32(TypeTrainingComboBox.SelectedValue),
+                        Duration = Convert.ToInt32(DurationTextBox.Text),
+                        Replays = Convert.ToInt32(ReplaysTextBox.Text),
+                        Quantity = Convert.ToInt32(QuantityTextBox.Text),
+                        RegularityExercises = RegularityExercisesTextBox.Text
+
+                    };
+
+
+                    db.context.Exercises.Add(exercises);
+                    db.context.SaveChanges();
+
+                    MessageBox.Show("Добавление выполнено успешно !",
+                    "Уведомление",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void AllTrainingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+
         }
     }
 }

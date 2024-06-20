@@ -1,8 +1,10 @@
 ﻿using Fitnes.Model;
 using Microsoft.Build.BuildEngine;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Fitnes.View.ViewPage
@@ -54,6 +57,18 @@ namespace Fitnes.View.ViewPage
                 if (App.CurrentClient.Target != null)
                     TargetComboBox.Text = App.CurrentClient.Target1.TargetName;
 
+            }
+            if(App.CurrentUser.Photo != null)
+                
+            {
+                byte[] imageBytes = (byte[])App.CurrentUser.Photo;
+                MemoryStream ms = new MemoryStream();
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.StreamSource = ms;
+                bmp.EndInit();
+                UserImage.Source = bmp;
             }
            
               
@@ -110,6 +125,16 @@ namespace Fitnes.View.ViewPage
         private void TargetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ChangeImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog(); // создаем диалоговое окно
+            openFileDialog.ShowDialog(); // показываем
+            byte[] image_bytes = File.ReadAllBytes(openFileDialog.FileName); // получаем байты выбранного файла
+            App.CurrentUser.Photo = image_bytes;
+            db.context.Users.AddOrUpdate(App.CurrentUser);
+            db.context.SaveChanges();
         }
     }
 }

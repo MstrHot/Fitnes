@@ -11,7 +11,9 @@ namespace Fitnes.View.CheckClasses
     {
         public static int PasswordCheck(string password)
         {
-            if(string.IsNullOrEmpty(password))
+            password.Trim();
+            password.Replace(" ","");
+            if (string.IsNullOrEmpty(password))
             {
                 return 0;
             }
@@ -44,7 +46,11 @@ namespace Fitnes.View.CheckClasses
         }
         public static int TelephoneCheck(string telephone)
         {
-            if(string.IsNullOrEmpty(telephone)) 
+            
+           telephone.Trim();
+            telephone.Replace(" ","");
+            Console.WriteLine(telephone);
+            if (string.IsNullOrEmpty(telephone)) 
             {
                 return 0;
             }
@@ -59,7 +65,7 @@ namespace Fitnes.View.CheckClasses
             {
                 result++;
             }
-            if(telephone.Length<= 11 & (Regex.Match(telephone, "[^8]").Success || telephone.Length <=11 & Regex.Match(telephone,"[^7]").Success))
+            if(telephone.Length<= 11 & (Regex.Match(telephone, "^8").Success || Regex.Match(telephone,"^7").Success))
             {
                 result++;
             }
@@ -67,6 +73,22 @@ namespace Fitnes.View.CheckClasses
 
 
             return  result;
+        }
+        public static bool PasswordCheckTest(string password)
+        {
+            if(RegCheck.PasswordCheck(password) == 5)
+                {
+                return true;
+            }
+            return false;
+        }
+        public static bool TelephoneCheckTest(string telephone)
+        {
+            if (RegCheck.TelephoneCheck(telephone) == 2)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -16,8 +16,8 @@
         </ResourceDictionary>
 
     </Page.Resources>
-
-    <Grid >
+    <Grid>
+        <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
@@ -28,10 +28,10 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel x:Name="StudentsAllStackPanel" Grid.Row="1" Grid.Column="1">
+        <StackPanel Visibility="Visible" x:Name="StudentsAllStackPanel" Grid.Row="1" Grid.Column="1">
             <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Ученики" />
-            <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="StudentsGrid_SelectionChanged"
-                  x:Name="StudentsGrid"  FontSize="25" Width="900
+            <ListView   Margin="0 40 0 0"  SelectionChanged="StudentsGrid_SelectionChanged"
+                  x:Name="StudentsGrid"  FontSize="25" Height="600" Width="900
                         "  >
                 <ListView.View >
                     <GridView >
@@ -46,9 +46,9 @@
             
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="TrainingAllStackPanel" Grid.Row="1"  Width="890" Grid.Column="1">
+            <StackPanel Visibility="Hidden" x:Name="TrainingAllStackPanel" Grid.Row="1"  Width="890" Grid.Column="1">
             <TextBlock  FontSize="46" HorizontalAlignment="Center" Text="Тренировки" />
-            <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="TrainingGridSelectionChanged"
+                <ListView   Margin="0 40 0 0"  Height="300"  SelectionChanged="TrainingGridSelectionChanged"
                   x:Name="TrainingGrid"  FontSize="25"  >
                 <ListView.View >
                     <GridView >
@@ -59,7 +59,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView   Margin="0 40 0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="AllTrainingListView_SelectionChanged"
+                <ListView   Margin="0 40 0 0" Height="300" SelectionChanged="AllTrainingListView_SelectionChanged"
                   x:Name="AllTrainingListView"   FontSize="25"  >
                 <ListView.View >
                     <GridView  >
@@ -76,9 +76,49 @@
             <DockPanel Margin="0 40 0 0">
                
                     <Button x:Name="DelTraninButton" Click="DelTraninButton_Click"  Content="Удалить" Width="150" Height="50"/>
-                <Button x:Name="AddTraninButton" Click="AddTraninButton_Click" Margin="500 0 0 0"  Content="Добавить" Width="150" Height="50"/>
+                    <Button x:Name="AddNewTraningButon" Click="AddNewTraningButon_Click"  Margin="170 0 0 0" Content="Добавить новую тренировку" Width="250" Height="50"/>
+                    <Button x:Name="AddTraninButton" Click="AddTraninButton_Click" Margin="170 0 0 0"  Content="Добавить" Width="150" Height="50"/>
                 
             </DockPanel>
         </StackPanel>
+    </Grid>
+    <Grid x:Name="AddNewTraningGrid" Background="#ffffff" Visibility="Hidden"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="600"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="372"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="900 00 0 0" 
+            Text="✖" FontSize="30" Style="{StaticResource T9}"
+                    MouseDown="TextBlock_MouseDown"/>
+            
+            <TextBlock Text="Добавление новой тренировки" Grid.Column="1" Grid.Row="1" FontSize="40"  HorizontalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Width="300"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150 80 0 0">
+
+                <TextBlock Text="Вид тренировки" FontSize="20" Opacity="0.5"/>
+                <ComboBox x:Name="TypeTrainingComboBox"   Height="32" />
+                <TextBlock Text="Название тренировки" FontSize="20" Opacity="0.5"/>
+                <TextBox x:Name="NameTrainingTextBox" Text="Название тренировки"/>
+                <TextBlock Text="Длительность" FontSize="20" Opacity="0.5"/>
+                <TextBox x:Name="DurationTextBox" Text="Длительность" />
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Width="300"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="450 80 0 0">
+                <TextBlock Text="Повторы" FontSize="20" Opacity="0.5"/>
+                <TextBox x:Name="ReplaysTextBox" Text="Повторы" />
+                <TextBlock Text="Количество" FontSize="20" Opacity="0.5"/>
+                <TextBox x:Name="QuantityTextBox" Text="Количество" />
+                <TextBlock Text="Количество раз в неделю" FontSize="20" Opacity="0.5"/>
+                <TextBox x:Name="RegularityExercisesTextBox" Text="Количество раз в неделю" />
+
+            </StackPanel>
+            <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Width="150" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" />
+        </Grid>
     </Grid>
 </Page>

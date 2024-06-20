@@ -44,7 +44,8 @@
             <Button x:Name="MyWorkouts"  Click="MyWorkouts_Click"  Content="Мои тренировки"/>
             <Button x:Name="MyCoach"  Click="MyCoach_Click"  Content="Мой тренер"/>
             <Button x:Name="MyAchievements"  Visibility="Hidden" Click="MyAchievements_Click"  Content="Мои достижения"/>
-           
+            <Button x:Name="NewWorkouts"  Visibility="Hidden" Click="NewWorkouts_Click"  Content="Добавление новой тренировки"/>
+
 
         </StackPanel>
         
